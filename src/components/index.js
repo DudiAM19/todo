@@ -6,6 +6,7 @@ import ButtonSort from './ButtonSort';
 import ItemListCard from './ItemListCard';
 import ModalSort from './ModalSort';
 import ModalListItem from './ModalListItem';
+import ModalDelete from './ModalDelete';
 
 export {
   ButtonAdd,
@@ -16,4 +17,5 @@ export {
   ItemListCard,
   ModalSort,
   ModalListItem,
+  ModalDelete,
 };

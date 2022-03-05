@@ -11,7 +11,7 @@ const ActivityItemCard = props => {
       </TouchableOpacity>
       <View style={styles.footercard}>
         <Text style={styles.date}>{props.date}</Text>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={props.onDelete}>
           <Feather name="trash-2" style={styles.iconcard} />
         </TouchableOpacity>
       </View>

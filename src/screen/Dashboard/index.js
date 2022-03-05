@@ -8,10 +8,12 @@ import {
   Header,
   ActivityItemCard,
   EmptyActivity,
+  ModalDelete,
 } from '../../components';
 
 export const Dashboard = ({navigation}) => {
   const [data, setData] = useState([]);
+  const [isModalDelete, setIsModalDelete] = useState(false);
 
   useEffect(() => {
     getActivity();
@@ -29,9 +31,9 @@ export const Dashboard = ({navigation}) => {
     }
   }
 
-  // const handleData = () => {
-  //   setData();
-  // };
+  const handleModal = () => {
+    setIsModalDelete(!isModalDelete);
+  };
   return (
     <SafeAreaView style={styles.container}>
       <Header
@@ -65,11 +67,13 @@ export const Dashboard = ({navigation}) => {
                 date={Moment(item.created_at).format('DD MMMM YYYY')}
                 accessibilityLabel="activity-label"
                 onPress={() => navigation.navigate('ItemList')}
+                onDelete={handleModal}
               />
             )}
           />
         )}
       </View>
+      <ModalDelete isVisible={isModalDelete} oncancel={handleModal} />
     </SafeAreaView>
   );
 };
