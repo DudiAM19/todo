@@ -74,4 +74,18 @@ export default StyleSheet.create({
     color: '#111111',
     fontSize: RFValue(14),
   },
+  btnsave: {
+    width: width * 0.3,
+    height: width * 0.13,
+    backgroundColor: '#16ABF8',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: width * 0.09,
+    marginVertical: width * 0.06,
+    marginHorizontal: width * 0.53,
+  },
+  textsave: {
+    fontFamily: 'Poppins-SemiBold',
+    color: 'white',
+  },
 });

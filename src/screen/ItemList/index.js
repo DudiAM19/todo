@@ -15,6 +15,8 @@ import {
   ItemListCard,
   ModalSort,
   ModalListItem,
+  ModalDelete,
+  AlertActivity,
 } from '../../components';
 import styles from './styles';
 import Octicons from 'react-native-vector-icons/Octicons';
@@ -26,10 +28,23 @@ export const ItemList = ({navigation}) => {
   const [data, setData] = useState([]);
   const [isModalSort, setIsModalSort] = useState(false);
   const [isModalList, setIsModalList] = useState(false);
+  const [isModalDelete, setIsModalDelete] = useState(false);
+  const [isAlert, setIsAlert] = useState(false);
 
   useEffect(() => {
     getItemList();
   }, []);
+
+  async function deleteItem(activityId) {
+    try {
+      const res = await axios.delete(
+        `https://todo.api.devcode.gethired.id/activity_group/${activityId}`,
+      );
+      console.log(res.status);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   async function getItemList() {
     try {
@@ -48,6 +63,19 @@ export const ItemList = ({navigation}) => {
 
   const handleModalList = () => {
     setIsModalList(!isModalList);
+  };
+
+  const handleModalDelete = () => {
+    setIsModalDelete(!isModalDelete);
+  };
+
+  const handleAlert = () => {
+    setIsModalDelete(!isModalDelete);
+    setIsAlert(!isAlert);
+  };
+
+  const handleAlertDelete = () => {
+    setIsAlert(!isAlert);
   };
 
   return (
@@ -88,6 +116,7 @@ export const ItemList = ({navigation}) => {
                 todotitle={item.title}
                 priority={item.priority}
                 accessibilityLabel="todo-item"
+                onTrash={handleModalDelete}
               />
             )}
           />
@@ -108,10 +137,23 @@ export const ItemList = ({navigation}) => {
           ))}
         </View>
       </Modal>
+
       {/* modal Add */}
-      <Modal isVisible={isModalList}>
-        <ModalListItem />
-      </Modal>
+      <ModalListItem
+        isVisible={isModalList}
+        accessibilityLabel="modal-add"
+        onClose={handleModalList}
+      />
+
+      {/* modal delete */}
+      <ModalDelete
+        isVisible={isModalDelete}
+        oncancel={handleModalDelete}
+        ondelete={handleAlert}
+      />
+
+      {/* modal alert activity */}
+      <AlertActivity isVisible={isAlert} onPress={handleAlertDelete} />
     </SafeAreaView>
   );
 };

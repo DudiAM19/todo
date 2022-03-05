@@ -27,7 +27,7 @@ const ItemListCard = props => {
       <TouchableOpacity style={styles.btniconedit}>
         <Octicons name="pencil" style={styles.iconedit} />
       </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={props.onTrash}>
         <Feather name="trash-2" style={styles.icontrash} />
       </TouchableOpacity>
     </View>

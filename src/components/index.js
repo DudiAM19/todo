@@ -7,6 +7,7 @@ import ItemListCard from './ItemListCard';
 import ModalSort from './ModalSort';
 import ModalListItem from './ModalListItem';
 import ModalDelete from './ModalDelete';
+import AlertActivity from './AlertActivity';
 
 export {
   ButtonAdd,
@@ -18,4 +19,5 @@ export {
   ModalSort,
   ModalListItem,
   ModalDelete,
+  AlertActivity,
 };
